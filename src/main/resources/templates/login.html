@@ -9,11 +9,12 @@
 
 <body>
     <h2>店舗管理ログイン</h2>
-    <!-- エラーメッセージの表示 -->
+    <!-- ログインに失敗してURLに ?error が付いた時だけ、赤い警告文を表示する -->
     <div th:if="${param.error}" style="color: red;">
         ユーザー名またはパスワードが正しくありません。
     </div>
     
+    <!-- パスワードを扱うため、URLに情報が出ないPOSTメソッドを使う -->
     <form th:action="@{/login}" method="post">
         <div>
             <label>ユーザー名: </label>

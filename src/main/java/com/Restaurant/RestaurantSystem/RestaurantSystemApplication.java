@@ -18,4 +18,9 @@ public class RestaurantSystemApplication {
 		return "hello";
 	}
 
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
+
 }

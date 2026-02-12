@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>管理者ダッシュボード</title>
+</head>
+
+<body>
+    <h1>店舗管理システムへようこそ</h1>
+    <p>現在はログイン状態です。</p>
+    
+    <!-- パスワードを扱うため、URLに情報が出ないPOSTメソッドを使う -->
+    <!-- ログアウト用のフォーム -->
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">ログアウト</button>
+    </form>
+</body>
+
+</html>

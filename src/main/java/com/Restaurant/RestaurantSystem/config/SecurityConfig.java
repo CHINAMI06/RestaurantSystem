@@ -15,10 +15,12 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll() // トップページと静的ファイルは全員許可
+                .requestMatchers("/admin/**").authenticated() // /admin/以下のURLはログイン必須
                 .anyRequest().authenticated() // それ以外はログインが必要
             )
             .formLogin((form) -> form
-                .loginPage("/login") // 独自のログインページ（後で作成）を指定
+                .loginPage("/login") // 独自のログインページを指定
+                .defaultSuccessUrl("/admin/index", true) // trueにより強制的にログイン成功後のリダイレクト先を指定
                 .permitAll()
             )
             .logout((logout) -> logout.permitAll());

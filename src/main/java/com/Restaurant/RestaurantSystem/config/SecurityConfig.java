@@ -15,6 +15,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll() // トップページと静的ファイルは全員許可
+                .requestMatchers("/h2-console/**").permitAll() // H2コンソールは全員許可
                 .requestMatchers("/admin/**").authenticated() // /admin/以下のURLはログイン必須
                 .anyRequest().authenticated() // それ以外はログインが必要
             )
@@ -23,7 +24,11 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/admin/index", true) // trueにより強制的にログイン成功後のリダイレクト先を指定
                 .permitAll()
             )
-            .logout((logout) -> logout.permitAll());
+            .logout((logout) -> logout.permitAll())
+
+        // H2 Consoleを表示するためにCSRF保護とFrameOptionsを調整
+        .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**")) // H2コンソールへのリクエストのみ、CSRF対策を無効化する
+        .headers(headers -> headers.frameOptions(frame -> frame.disable())); //フレーム（iframe）内でのページ表示制限を解除する
 
         return http.build();
     }

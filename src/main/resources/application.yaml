@@ -1,3 +1,19 @@
 spring:
   application:
     name: RestaurantSystem
+  
+  datasource:
+    url: jdbc:h2:file:./data/restaurant_db # プロジェクト直下のdataフォルダに保存
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: true # ブラウザでDBを確認可能にする
+      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: update # Entityの変更を自動でDBに反映
+    show-sql: true # 実行されたSQLをコンソールに表示

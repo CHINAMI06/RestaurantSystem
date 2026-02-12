@@ -23,4 +23,9 @@ public class RestaurantSystemApplication {
 		return "login";
 	}
 
+	@GetMapping("/admin/index")
+	public String adminIndex() {
+		return "admin/index";
+	}
+
 }

@@ -15,6 +15,7 @@ public class SecurityConfig {
         http
             .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll() // トップページと静的ファイルは全員許可
+                .requestMatchers("/admin/**").authenticated() // /admin/以下のURLはログイン必須
                 .anyRequest().authenticated() // それ以外はログインが必要
             )
             .formLogin((form) -> form

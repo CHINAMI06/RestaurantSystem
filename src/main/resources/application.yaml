@@ -3,6 +3,7 @@ spring:
     name: RestaurantSystem
   
   datasource:
+    # H2コンソールで使用するデータベースの設定
     url: jdbc:h2:file:./data/restaurant_db # プロジェクト直下のdataフォルダに保存
     driver-class-name: org.h2.Driver
     username: sa

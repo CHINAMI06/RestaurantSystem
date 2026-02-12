@@ -18,7 +18,8 @@ public class SecurityConfig {
                 .anyRequest().authenticated() // それ以外はログインが必要
             )
             .formLogin((form) -> form
-                .loginPage("/login") // 独自のログインページ（後で作成）を指定
+                .loginPage("/login") // 独自のログインページを指定
+                .defaultSuccessUrl("/admin/index", true) // trueにより強制的にログイン成功後のリダイレクト先を指定
                 .permitAll()
             )
             .logout((logout) -> logout.permitAll());

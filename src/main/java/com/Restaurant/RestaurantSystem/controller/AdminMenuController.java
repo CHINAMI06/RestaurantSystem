@@ -34,7 +34,7 @@ public class AdminMenuController {
     }
 
     @PostMapping("/add") // /admin/menu/addにPOSTリクエストが来たとき,登録処理を行う
-    public String saveMenu(@Valid @ModelAttribute("menu") Menu menu, BindingResult bindingResult) {
+    public String saveMenu(@Valid @ModelAttribute("menu") Menu menu, BindingResult bindingResult) { //@Valid を付けたオブジェクトの すぐ後ろ に BindingResult を置く
         if (bindingResult.hasErrors()) { // バリデーションエラーがある場合
             return "admin/menu-form"; // フォームに戻る
         }

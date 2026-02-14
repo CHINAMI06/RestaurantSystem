@@ -14,7 +14,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll() // トップページと静的ファイルは全員許可
+                .requestMatchers("/", "/css/**", "/js/**", "/images/**", "/menu").permitAll() // トップページ、静的ファイル、レストランメニューは全員許可
                 .requestMatchers("/h2-console/**").permitAll() // H2コンソールは全員許可
                 .requestMatchers("/admin/**").authenticated() // /admin/以下のURLはログイン必須
                 .anyRequest().authenticated() // それ以外はログインが必要

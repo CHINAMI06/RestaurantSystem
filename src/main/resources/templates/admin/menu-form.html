@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>メニュー登録</title>
+</head>
+
+<body>
+    <h1>メニュー登録</h1>
+
+    <!-- フォームの送信先は/admin/menu/add, メソッドはPOST -->
+    <form th:action="@{/admin/menu/add}" th:object="${menu}" method="post">
+        <label>料理名: <input type="text" th:field="*{name}" /></label>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        
+        <label>価格: <input type="number" th:field="*{price}" /></label>
+        <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></p>
+        
+        <button type="submit">登録</button>
+    </form>
+
+    <a th:href="@{/admin/menu}">メニュー一覧に戻る</a>
+    
+</body>
+
+</html>

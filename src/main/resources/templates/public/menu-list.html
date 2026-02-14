@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>メニュー一覧</title>
+</head>
+
+<body>
+    <h1>レストランメニュー</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>料理名</th>
+                <th>価格</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="menu : ${menus}">
+                <td th:text="${menu.name}"></td>
+                <td th:text="${menu.price} + '円'"></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/}">トップページに戻る</a>
+
+</body>
+
+</html>

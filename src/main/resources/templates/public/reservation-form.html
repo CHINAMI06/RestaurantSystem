@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+<title>予約フォーム</title>
+</head>
+
+<body>
+    <h1>予約を入力してください</h1>
+
+    <form th:action="@{/reservation}" th:object="${reservation}" method="post">// フォームの送信先は/reservation, メソッドはPOST
+
+        <label>予約日時: <input type="datetime-local" th:field="*{reservationDateTime}" /></label>// 予約日時の入力フィールド
+        <span th:if="${#fields.hasErrors('reservationDateTime')}" th:errors="*{reservationDateTime}"></span><br/>// 予約日時のバリデーションエラーがある場合、エラーメッセージを表示
+        
+        <label>名前: <input type="text" th:field="*{name}" /></label>// 名前の入力フィールド
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>// 名前のバリデーションエラーがある場合、エラーメッセージを表示
+        
+        <label>人数: <input type="number" th:field="*{numberOfPeople}" /></label>// 人数の入力フィールド
+        <span th:if="${#fields.hasErrors('numberOfPeople')}" th:errors="*{numberOfPeople}"></span><br/>// 人数のバリデーションエラーがある場合、エラーメッセージを表示
+        
+        <label>連絡先: <input type="email" th:field="*{contact}" /></label>// 連絡先の入力フィールド
+        <span th:if="${#fields.hasErrors('contact')}" th:errors="*{contact}"></span><br/>// 連絡先のバリデーションエラーがある場合、エラーメッセージを表示
+        
+        <button type="submit">予約する</button>// 送信ボタン
+
+    </form>
+
+</body>
+
+</html>

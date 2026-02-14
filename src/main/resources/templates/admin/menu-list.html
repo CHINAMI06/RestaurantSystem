@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>メニュー一覧</title>
+</head>
+
+<body>
+    <h1>メニュー一覧</h1>
+    <table> 
+        <tr>
+            <th>ID</th>
+            <th>料理名</th>
+            <th>価格</th>
+        </tr>
+
+        <!-- メニューのリストをループして表示 -->
+        <tr th:each="menu : ${menus}">
+            <td th:text="${menu.id}"></td>
+            <td th:text="${menu.name}"></td>
+            <td th:text="${menu.price}"></td>
+        </tr>
+    </table>
+
+    <a th:href="@{/admin/menu/add}">新しいメニューを追加</a>
+    <a th:href="@{/admin/index}">ダッシュボードに戻る</a>
+
+</body>
+
+</html>

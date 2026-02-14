@@ -22,3 +22,4 @@ public class PublicMenuController {
         model.addAttribute("menus", menus); // モデルにメニュー一覧を追加
         return "public/menu-list"; // 公開用のビューを指定
     }
+}

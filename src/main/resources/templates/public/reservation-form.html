@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+<title>予約フォーム</title>
+</head>
+
+<body>
+    <h1>予約を入力してください</h1>
+
+    <form th:action="@{/reservation}" th:object="${reservation}" method="post">
+
+        <label>予約日時: <input type="datetime-local" th:field="*{reservationDateTime}" /></label>
+        <span th:if="${#fields.hasErrors('reservationDateTime')}" th:errors="*{reservationDateTime}"></span><br/>
+        
+        <label>名前: <input type="text" th:field="*{name}" /></label>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>
+        
+        <label>人数: <input type="number" th:field="*{numberOfPeople}" /></label>
+        <span th:if="${#fields.hasErrors('numberOfPeople')}" th:errors="*{numberOfPeople}"></span><br/>
+        
+        <label>連絡先: <input type="email" th:field="*{contact}" /></label>
+        <span th:if="${#fields.hasErrors('contact')}" th:errors="*{contact}"></span><br/>
+        
+        <button type="submit">予約する</button>
+
+    </form>
+
+</body>
+
+</html>

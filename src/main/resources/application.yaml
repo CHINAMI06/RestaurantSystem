@@ -18,3 +18,7 @@ spring:
     hibernate:
       ddl-auto: update # Entityの変更を自動でDBに反映
     show-sql: true # 実行されたSQLをコンソールに表示
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss # 日付のフォーマットを指定
+    time-zone: Asia/Tokyo # タイムゾーンを日本に設定

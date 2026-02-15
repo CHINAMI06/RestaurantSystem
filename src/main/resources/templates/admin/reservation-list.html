@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+<title>予約一覧</title>
+</head>
+
+<body>
+    <h1>予約一覧</h1>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>日時</th>
+            <th>名前</th>
+            <th>人数</th>
+            <th>連絡先</th>
+        </tr>
+        
+        <tr th:each="reservation : ${reservations}">
+            <td th:text="${reservation.id}"></td>
+            <td th:text="${#temporals.format(reservation.reservationDateTime, 'yyyy/MM/dd HH:mm')}"></td>
+            <td th:text="${reservation.name}"></td>
+            <td th:text="${reservation.numberOfPeople}"></td>
+            <td th:text="${reservation.contact}"></td>
+        </tr>
+    </table>
+    <a th:href="@{/admin/index}">ダッシュボードに戻る</a>
+
+</body>
+
+</html>

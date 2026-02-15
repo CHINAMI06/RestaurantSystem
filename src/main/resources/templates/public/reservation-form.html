@@ -9,21 +9,21 @@
 <body>
     <h1>予約を入力してください</h1>
 
-    <form th:action="@{/reservation}" th:object="${reservation}" method="post">// フォームの送信先は/reservation, メソッドはPOST
+    <form th:action="@{/reservation}" th:object="${reservation}" method="post">
 
-        <label>予約日時: <input type="datetime-local" th:field="*{reservationDateTime}" /></label>// 予約日時の入力フィールド
-        <span th:if="${#fields.hasErrors('reservationDateTime')}" th:errors="*{reservationDateTime}"></span><br/>// 予約日時のバリデーションエラーがある場合、エラーメッセージを表示
+        <label>予約日時: <input type="datetime-local" th:field="*{reservationDateTime}" /></label>
+        <span th:if="${#fields.hasErrors('reservationDateTime')}" th:errors="*{reservationDateTime}"></span><br/>
         
-        <label>名前: <input type="text" th:field="*{name}" /></label>// 名前の入力フィールド
-        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>// 名前のバリデーションエラーがある場合、エラーメッセージを表示
+        <label>名前: <input type="text" th:field="*{name}" /></label>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span><br/>
         
-        <label>人数: <input type="number" th:field="*{numberOfPeople}" /></label>// 人数の入力フィールド
-        <span th:if="${#fields.hasErrors('numberOfPeople')}" th:errors="*{numberOfPeople}"></span><br/>// 人数のバリデーションエラーがある場合、エラーメッセージを表示
+        <label>人数: <input type="number" th:field="*{numberOfPeople}" /></label>
+        <span th:if="${#fields.hasErrors('numberOfPeople')}" th:errors="*{numberOfPeople}"></span><br/>
         
-        <label>連絡先: <input type="email" th:field="*{contact}" /></label>// 連絡先の入力フィールド
-        <span th:if="${#fields.hasErrors('contact')}" th:errors="*{contact}"></span><br/>// 連絡先のバリデーションエラーがある場合、エラーメッセージを表示
+        <label>連絡先: <input type="email" th:field="*{contact}" /></label>
+        <span th:if="${#fields.hasErrors('contact')}" th:errors="*{contact}"></span><br/>
         
-        <button type="submit">予約する</button>// 送信ボタン
+        <button type="submit">予約する</button>
 
     </form>
 

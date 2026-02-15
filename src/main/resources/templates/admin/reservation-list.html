@@ -20,7 +20,7 @@
         
         <tr th:each="reservation : ${reservations}">
             <td th:text="${reservation.id}"></td>
-            <td th:text="${reservation.reservationDateTime}"></td>
+            <td th:text="${#temporals.format(reservation.reservationDateTime, 'yyyy/MM/dd HH:mm')}"></td>
             <td th:text="${reservation.name}"></td>
             <td th:text="${reservation.numberOfPeople}"></td>
             <td th:text="${reservation.contact}"></td>

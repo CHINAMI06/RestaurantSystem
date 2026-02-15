@@ -34,4 +34,8 @@ public class PublicReservationController {
         return "redirect:/reservation/success"; // 成功ページへリダイレクト
     }
 
+    @GetMapping("/reservation/success") // /reservation/successにGETリクエストが来たとき,予約成功ページを表示する
+    public String reservationSuccessPage() {
+        return "public/reservation-success"; // 公開用の予約成功ビューを指定
+    }
 }

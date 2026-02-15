@@ -31,14 +31,14 @@ public class Reservation {
 
     @NotBlank(message = "お客様名は必須です")
     @Size(max = 50, message = "お客様名は50文字以内で入力してください")
-    private String customerName; // お客様名
+    private String name; // お客様名
 
     @Min(value = 1, message = "人数は1人以上でなければなりません")
     private Integer numberOfPeople; // 人数
 
     @NotBlank(message = "連絡先は必須です")
     @Email(message = "有効なメールアドレスを入力してください")
-    private String contactInfo; // 連絡先（メールアドレス）
+    private String contact; // 連絡先（メールアドレス）
 
 
 }

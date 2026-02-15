@@ -4,6 +4,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -11,7 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, UserDetailsService userDetailsService) throws Exception {
         http
             .authorizeHttpRequests((requests) -> requests
                 .requestMatchers("/", "/menu", "/reservation", "/reservation/**", "/css/**", "/js/**", "/images/**").permitAll() // トップページ、静的ファイル、レストランメニュー、予約関連は全員許可
@@ -19,6 +22,8 @@ public class SecurityConfig {
                 .requestMatchers("/admin/**").authenticated() // /admin/以下のURLはログイン必須
                 .anyRequest().authenticated() // それ以外はログインが必要
             )
+            // ユーザー情報はDBの UserDetailsService で提供
+            .userDetailsService(userDetailsService)
             .formLogin((form) -> form
                 .loginPage("/login") // 独自のログインページを指定
                 .defaultSuccessUrl("/admin/index", true) // trueにより強制的にログイン成功後のリダイレクト先を指定
@@ -31,5 +36,12 @@ public class SecurityConfig {
         .headers(headers -> headers.frameOptions(frame -> frame.disable())); //フレーム（iframe）内でのページ表示制限を解除する
 
         return http.build();
+    }
+
+    // パスワードエンコーダーをBeanとして定義。これにより、認証はDBのユーザー情報＋BCryptで行う。
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        // パスワードを安全にハッシュ化するためのエンコーダー
+        return new BCryptPasswordEncoder();
     }
 }

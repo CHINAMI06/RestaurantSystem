@@ -1,25 +1,23 @@
 # Multi-stage build for efficiency
-FROM amazoncorretto:17-al2-jdk as builder
+FROM maven:3.9.6-eclipse-temurin-17 as builder
 
-WORKDIR /build
+WORKDIR /app
 
-COPY . .
+# copy only pom first to leverage Docker layer cache for dependencies
+COPY pom.xml mvnw .mvn/ ./
+RUN mvn -B -ntp -q dependency:go-offline
 
-RUN yum install -y tar gzip && \
-    curl -fsSL https://archive.apache.org -o apache-maven-3.9.6-bin.tar.gz && \
-    tar xzf apache-maven-3.9.6-bin.tar.gz && \
-    mv apache-maven-3.9.6 /opt/maven && \
-    ln -s /opt/maven/bin/mvn /usr/bin/mvn
-
-RUN mvn clean package -DskipTests
+# copy full project and build
+COPY src ./src
+RUN mvn -B -ntp package -DskipTests
 
 # Runtime stage
-FROM amazoncorretto:17-al2-jdk
+FROM amazoncorretto:17-jdk
 
 WORKDIR /app
 
 # Copy JAR from builder
-COPY --from=builder /build/target/*.jar app.jar
+COPY --from=builder /app/target/*.jar app.jar
 
 # Expose port
 EXPOSE 8080

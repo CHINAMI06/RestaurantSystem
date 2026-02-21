@@ -4,7 +4,8 @@ FROM maven:3.9.6-eclipse-temurin-17 as builder
 WORKDIR /app
 
 # copy only pom first to leverage Docker layer cache for dependencies
-COPY pom.xml mvnw .mvn/ ./
+# No need to copy the Maven wrapper when using the official Maven image
+COPY pom.xml ./
 RUN mvn -B -ntp -q dependency:go-offline
 
 # copy full project and build

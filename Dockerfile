@@ -12,12 +12,16 @@ COPY src ./src
 RUN mvn -B -ntp package -DskipTests
 
 # Runtime stage
-FROM amazoncorretto:17-jdk
+FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
 # Copy JAR from builder
 COPY --from=builder /app/target/*.jar app.jar
+
+# Install curl for healthcheck
+RUN apt-get update && apt-get install -y --no-install-recommends curl ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
 
 # Expose port
 EXPOSE 8080

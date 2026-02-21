@@ -1,0 +1,50 @@
+# Version control
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Build artifacts
+target/
+out/
+*.class
+*.jar
+*.war
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Node modules (if frontend exists)
+node_modules/
+npm-debug.log
+
+# Temporary files
+tmp/
+temp/
+
+# Documentation
+README.md
+DEPLOYMENT.md
+HELP.md
+
+# Maven
+.m2/
+
+# Maven wrapper (not needed in container)
+mvnw
+mvnw.cmd
+.mvn/
+
+# Test files (optional - remove if you want test coverage in prod)
+src/test/

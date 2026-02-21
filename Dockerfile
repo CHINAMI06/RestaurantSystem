@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
 RUN mvn clean package -DskipTests
 
 # Runtime stage
-FROM openjdk:17-jdk-slim
+FROM amazoncorretto:17-al2-jdk
 
 WORKDIR /app
 

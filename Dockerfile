@@ -5,7 +5,7 @@ WORKDIR /build
 
 COPY . .
 
-RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
+RUN yum install -y maven
 
 RUN mvn clean package -DskipTests
 

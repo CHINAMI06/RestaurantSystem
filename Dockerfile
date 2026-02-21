@@ -6,7 +6,7 @@ WORKDIR /build
 COPY . .
 
 RUN yum install -y tar gzip && \
-    curl -O https://archive.apache.org && \
+    curl -fsSL https://archive.apache.org -o apache-maven-3.9.6-bin.tar.gz && \
     tar xzf apache-maven-3.9.6-bin.tar.gz && \
     mv apache-maven-3.9.6 /opt/maven && \
     ln -s /opt/maven/bin/mvn /usr/bin/mvn

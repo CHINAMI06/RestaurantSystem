@@ -1,0 +1,66 @@
+/* 共通スタイル */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Meiryo", "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+  background: #f7f8fb;
+  color: #222;
+}
+
+.container {
+  max-width: 980px;
+  margin: 24px auto;
+  padding: 16px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(20,20,30,0.06);
+}
+
+h1, h2, h3 {
+  color: #222;
+  margin: 0 0 12px 0;
+}
+
+p { margin: 0 0 12px 0; }
+
+table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+th, td { padding: 10px 12px; border: 1px solid #e6e9ef; }
+th { background: #f1f4f9; text-align: left; }
+tr:nth-child(even) { background: #fbfcfe; }
+
+.btn {
+  display: inline-block;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #fff;
+  background: #1976d2;
+}
+.btn.secondary { background: #6c757d; }
+.btn.danger { background: #d32f2f; }
+
+form { display: block; }
+.form-group { margin-bottom: 12px; }
+label { display: block; margin-bottom: 6px; font-weight: 600; }
+input[type="text"], input[type="password"], input[type="number"], input[type="email"], input[type="datetime-local"], select, textarea {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #dfe6ef;
+  box-sizing: border-box;
+}
+
+.error { color: #c62828; font-size: 13px; }
+.note { color: #6b7280; font-size: 13px; }
+
+.nav { margin-bottom: 16px; }
+.nav a { margin-right: 12px; color: #1976d2; text-decoration: none; }
+
+footer { text-align: center; margin-top: 20px; color: #8b8f95; font-size: 13px; }
+
+/* small screens */
+@media (max-width: 720px) {
+  .container { margin: 12px; padding: 12px; }
+  th, td { padding: 8px; }
+}

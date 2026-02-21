@@ -12,7 +12,7 @@ services:
       - key: SPRING_PROFILES_ACTIVE
         value: prod
       - key: SPRING_JPA_HIBERNATE_DDL_AUTO
-        value: validate
+        value: update
       - key: SPRING_H2_CONSOLE_ENABLED
         value: false
       - key: JAVA_OPTS

@@ -17,6 +17,9 @@ FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
+# Ensure persistent data directory exists (Render provides /var/data)
+RUN mkdir -p /var/data && chmod 777 /var/data
+
 # Copy JAR from builder
 COPY --from=builder /app/target/*.jar app.jar
 

@@ -1,5 +1,5 @@
 # Multi-stage build for efficiency
-FROM openjdk:17-jdk-slim as builder
+FROM amazoncorretto:17-al2-jdk as builder
 
 WORKDIR /build
 

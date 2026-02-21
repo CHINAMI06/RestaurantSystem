@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,15 +22,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // ユーザー名は空であってはならず、重複も許さない
+    // ユーザー名は空であってはならず、重複も許さないため、@Columnで制約を指定し、@NotBlankでバリデーションを行う
     @Column(nullable = false, unique = true)
+    @NotBlank(message = "ユーザー名は必須です")
     private String username;
 
+    // パスワードは空であってはならないため、@Columnで制約を指定する
+    // @NotBlankはコントローラーで条件付きバリデーションを行うため、ここでは付与しない
     @Column(nullable = false)
     private String password;
 
+    // ユーザーの役割を表すフィールド。空であってはならないため、@Columnで制約を指定し、@NotBlankでバリデーションを行う
     // 例: ROLE_ADMIN, ROLE_USER
     @Column(nullable = false)
+    @NotBlank(message = "ロールは必須です")
     private String role;
 
 }

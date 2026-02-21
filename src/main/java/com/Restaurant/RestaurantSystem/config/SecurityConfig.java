@@ -29,7 +29,10 @@ public class SecurityConfig {
                 .defaultSuccessUrl("/admin/index", true) // trueにより強制的にログイン成功後のリダイレクト先を指定
                 .permitAll()
             )
-            .logout((logout) -> logout.permitAll())
+            .logout((logout) -> logout
+                .logoutSuccessUrl("/")
+                .permitAll()
+            )
 
         // H2 Consoleを表示するためにCSRF保護とFrameOptionsを調整
         .csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**")) // H2コンソールへのリクエストのみ、CSRF対策を無効化する

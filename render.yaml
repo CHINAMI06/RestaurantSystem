@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: restaurant-system
+    env: docker
+    plan: free
+    repo: https://github.com/CHINAMI06/RestaurantSystem
+    branch: main
+    dockerfile: ./Dockerfile
+    buildCommand: ""
+    startCommand: "java -jar app.jar"
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: validate
+      - key: SPRING_H2_CONSOLE_ENABLED
+        value: false
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
+    healthCheckPath: /actuator/health
+    autoDeploy: true

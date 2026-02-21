@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: RestaurantSystem
+  
+  datasource:
+    # Renderでは/var/dataディレクトリがpersistentです
+    url: jdbc:h2:file:/var/data/restaurant_db
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  h2:
+    console:
+      enabled: false
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Tokyo
+
+logging:
+  level:
+    root: WARN
+    com.Restaurant.RestaurantSystem: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized

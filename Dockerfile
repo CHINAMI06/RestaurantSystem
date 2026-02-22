@@ -33,6 +33,7 @@ EXPOSE 8080
 # Environment variables (can be overridden by Render)
 ENV SPRING_PROFILES_ACTIVE=prod
 ENV JAVA_OPTS="-Xmx512m -Xms256m"
+ENV SPRING_JPA_HIBERNATE_DDL_AUTO=update
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \

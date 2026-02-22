@@ -19,3 +19,7 @@ services:
         value: -Xmx512m -Xms256m
     healthCheckPath: /actuator/health
     autoDeploy: true
+    disk:
+      name: restaurant-data
+      mountPath: /var/data
+      sizeGB: 1

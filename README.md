@@ -24,6 +24,57 @@ Java + Spring Bootで構築した、飲食店向けの予約・メニュー管�
 
 ---
 
+## 設計ドキュメント
+
+### ER図
+
+以下は主要な３つのエンティティ間の構造を示したER図です。依存関係は特にありませんが、テーブル定義を整理するために図示しています。
+
+```mermaid
+erDiagram
+    USER {
+        Long id PK
+        String username
+        String password
+        String role
+    }
+    MENU {
+        Long id PK
+        String name
+        Integer price
+    }
+    RESERVATION {
+        Long id PK
+        LocalDateTime reservationDateTime
+        String name
+        Integer numberOfPeople
+        String contact
+    }
+```
+
+### アーキテクチャ概要
+
+本プロジェクトは典型的な Spring Boot の三層構造を採用しています。
+
+1. **Controller** – HTTP リクエストを受け取り、サービスを呼び出します。
+2. **Service** – ビジネスロジックを実装し、リポジトリを利用してデータ操作を行います。
+3. **Repository** – Spring Data JPA による CRUD 操作を担当し、エンティティとデータベースをマッピングします。
+
+各層は依存注入（`@Autowired`/`@Service`/`@Repository`）を通じて疎結合に保たれており、単体テスト時にはモックに差し替え可能です。
+
+### 技術選択とこだわり
+
+- **Spring Boot**：設定より規約で簡潔に構築でき、マイクロサービスへの拡張も容易なため採用。
+- **Spring Security**：認証／認可の実装を自前で行うのはリスクが高く、フレームワーク標準でロールベースのアクセス制御ができるので選択。`CustomUserDetailsService`でデータベースからユーザーを読み込み、`SecurityConfig`でエンドポイントごとの制限を設定。
+- **Thymeleaf**：サーバーサイドテンプレートで画面が簡単に作成でき、Java の変数埋め込みやセッション情報へのアクセスが容易。SPA 等の重たいフロントエンドは必要なかったため。
+- **H2 Database**：開発時にセットアップ不要なインメモリ／ファイルベースDBで軽量。将来的に PostgreSQL 等に差し替え可能。
+- **Lombok**：`@Data` や `@NoArgsConstructor` などでエンティティ／DTOのボイラープレートを削減し可読性を向上。
+- **Docker/Render**：コンテナ化により環境差異を排除し、Render の無料プランで簡単にデプロイできる点を優先。`render.yaml` によりビルド〜実行コマンドと環境変数、永続ディスク設定を定義。
+
+---
+
+---
+
 ## システム要件
 
 - **Java**：JDK 17.x（Amazon Corretto推奨）
@@ -206,6 +257,43 @@ RestaurantSystem/
 ## デプロイ
 
 ### Render へのデプロイ
+
+本リポジトリには `render.yaml` が含まれており、Render.com におけるサービス定義を記述しています。
+以下の設定により、GitHub の `main` ブランチに push すると自動的にビルド＆再デプロイが行われます。
+
+```yaml
+services:
+  - type: web
+    name: restaurant-system
+    env: docker
+    plan: free
+    repo: https://github.com/CHINAMI06/RestaurantSystem
+    branch: main
+    dockerfile: ./Dockerfile
+    buildCommand: ""
+    startCommand: "java -jar app.jar"
+    envVars:
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: SPRING_H2_CONSOLE_ENABLED
+        value: false
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
+    healthCheckPath: /actuator/health
+    autoDeploy: true
+    disk:
+      name: restaurant-data
+      mountPath: /var/data
+      sizeGB: 1
+```
+
+- **env=docker**：Dockerfile を利用したビルド
+- **startCommand**：コンテナ起動時に JAR を実行
+- **envVars**：Spring プロファイルや H2 コンソール無効化、JVM オプションを指定
+- **autoDeploy**：GitHub push による自動デプロイを有効化
+- **disk**：永続ストレージを `/var/data` にマウント（プランによっては利用不可）
 
 詳細は [DEPLOYMENT.md](DEPLOYMENT.md) を参照してください。
 

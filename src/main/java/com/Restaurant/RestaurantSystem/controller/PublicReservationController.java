@@ -12,12 +12,19 @@ import com.Restaurant.RestaurantSystem.entity.Reservation;
 import com.Restaurant.RestaurantSystem.service.ReservationService;
 
 import jakarta.validation.Valid;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
 public class PublicReservationController {
     
     @Autowired
     private ReservationService reservationService; // 予約関連のサービスを注入
+
+    private static final Logger logger = LoggerFactory.getLogger(PublicReservationController.class);
 
     @GetMapping("/reservation") // /reservationにGETリクエストが来たとき,予約ページを表示する
     public String reservationForm(Model model) {
@@ -30,7 +37,28 @@ public class PublicReservationController {
         if (bindingResult.hasErrors()) { // バリデーションエラーがある場合
             return "public/reservation-form"; // フォームに戻る
         }
-        reservationService.saveReservation(reservation); // Service経由で予約を保存
+        // 予約を保存してから、非同期でPythonスクリプトを起動して確認メールを送信する
+        Reservation saved = reservationService.saveReservation(reservation); // Service経由で予約を保存
+
+        try {
+            DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            String datetime = saved.getReservationDateTime().format(fmt);
+            List<String> cmd = Arrays.asList(
+                "python",
+                "scripts/send_reservation_email.py",
+                "--to", saved.getContact(),
+                "--name", saved.getName(),
+                "--datetime", datetime,
+                "--people", String.valueOf(saved.getNumberOfPeople())
+            );
+            logger.info("Starting email sender: {}", String.join(" ", cmd));
+            Process p = new ProcessBuilder(cmd).start();
+            logger.info("Email process started: {}", p);
+        } catch (Exception e) {
+            // メール送信に失敗してもユーザーには影響させない（ログ出力のみ）
+            logger.error("Failed to start email sender", e);
+        }
+
         return "redirect:/reservation/success"; // 成功ページへリダイレクト
     }
 

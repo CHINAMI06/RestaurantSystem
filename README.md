@@ -362,6 +362,50 @@ docker run -p 8080:8080 -v data:/var/data restaurant-system:latest
 
 ---
 
+## メール送信構成
+
+### 予約完了メール送信
+
+アプリでは予約が成功したときに、入力されたメールアドレス宛てに
+確認メールを送るための Python スクリプトを呼び出します。
+
+- スクリプト: `scripts/send_reservation_email.py`
+- コントローラ: `PublicReservationController` が予約保存後に
+  非同期で起動します。
+- SMTP 設定は環境変数で渡します。
+  ```text
+  SMTP_HOST    (例: smtp.gmail.com)
+  SMTP_PORT    (例: 587)
+  SMTP_USER    (Gmail のフルアドレスやアプリパスワード)
+  SMTP_PASS    (Gmail のアプリパスワード)
+  FROM_EMAIL   (送信元アドレス、例 no-reply@yourdomain.com)
+  ```
+
+#### Gmail を使う場合
+
+Gmail の SMTP サーバを利用するには以下を行ってください。
+
+1. Google アカウントの「セキュリティ」設定で2 段階認証を有効化。
+2. [アプリパスワード](https://myaccount.google.com/apppasswords)を発行し、
+   `SMTP_USER` に Gmail アドレス、`SMTP_PASS` にアプリパスワードを設定。
+3. `SMTP_HOST=smtp.gmail.com`, `SMTP_PORT=587` を使用し、
+   スクリプト（またはアプリ）起動前に環境変数をエクスポート。
+
+PowerShell の例:
+```powershell
+$env:SMTP_HOST = 'smtp.gmail.com'
+$env:SMTP_PORT = '587'
+$env:SMTP_USER = 'your@gmail.com'
+$env:SMTP_PASS = 'xxxxxxxxxxxx'
+$env:FROM_EMAIL = 'no-reply@yourdomain.com'
+python scripts/send_reservation_email.py --to guest@example.com --name "山田 太郎" --datetime "2026-02-28 19:00" --people 2
+```
+
+Gmail 以外のプロバイダでも同様にホストとポートを
+適宜設定してください。
+
+---
+
 ## ライセンス
 
 このプロジェクトはポートフォリオ用途です。

@@ -369,9 +369,11 @@ docker run -p 8080:8080 -v data:/var/data restaurant-system:latest
 アプリでは予約が成功したときに、入力されたメールアドレス宛てに
 確認メールを送るための Python スクリプトを呼び出します。
 
-- スクリプト: `scripts/send_reservation_email.py`
+- スクリプト: `scripts/send_reservation_email.py` (先頭に `#!/usr/bin/env python3`)
 - コントローラ: `PublicReservationController` が予約保存後に
   非同期で起動します。
+  - Linux 環境では `python3` コマンドを使い、Windowsでは `python` を使うよう
+    起動時に自動判定します。
 - SMTP 設定は環境変数で渡します。
   ```text
   SMTP_HOST    (例: smtp.gmail.com)
@@ -403,6 +405,35 @@ python scripts/send_reservation_email.py --to guest@example.com --name "山田 �
 
 Gmail 以外のプロバイダでも同様にホストとポートを
 適宜設定してください。
+
+#### Docker / Linux デプロイ時の注意
+
+Render のような Linux ベースの Web サービスで Java ランタイム
+を選択すると、Python は同梱されていません。
+起動時に `python` コマンドを呼び出すと
+`java.io.IOException: Cannot run program "python": error=2` が発生します。
+
+- **コマンド名**: 多くのディストリビューションでは `python3` と
+  してインストールされます。コードは OS を判定して `python3` を
+  呼び出すようになっていますが、かならずコンテナ内に Python が
+  入っている必要があります。
+- **Dockerfile 例**: ベースイメージに `apt-get install -y python3` を
+  追加してください。以下は一例です。
+  ```dockerfile
+  FROM eclipse-temurin:17-jdk
+  # …既存のセットアップ…
+  RUN apt-get update && apt-get install -y \
+      curl ca-certificates python3 \
+      && rm -rf /var/lib/apt/lists/*
+  ```
+  あるいは `python3` と併せて `python3-venv` や `pip` を入れても
+  かまいません。
+- **ローカル実行**: Windows や macOS の開発マシンでは通常 `python`
+  コマンドで呼び出せますが、インストールされていない場合は
+  Python 3 を入れておく必要があります。
+
+これらの対応により、Render や Docker にデプロイしたコンテナでも
+確認メール送信が動作します。
 
 ---
 

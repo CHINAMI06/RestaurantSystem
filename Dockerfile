@@ -17,6 +17,21 @@ FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
+# 1. Python3 と pip のインストールを追加
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 \
+    python3-pip \
+    curl \
+    ca-certificates \
+  && rm -rf /var/lib/apt/lists/*
+
+# 2. Pythonスクリプト一式をコピー (scriptsフォルダが必要なため)
+# COPY scripts/ ./scripts/
+
+# 3. もし Python で外部ライブラリ (requestsなど) を使う場合は以下も実行
+# COPY scripts/requirements.txt .
+# RUN pip3 install --no-cache-dir -r requirements.txt
+
 # Ensure persistent data directory exists (Render provides /var/data)
 RUN mkdir -p /var/data && chmod 777 /var/data
 

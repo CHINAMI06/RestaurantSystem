@@ -15,6 +15,7 @@ import jakarta.validation.Valid;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,8 +66,13 @@ public class PublicReservationController {
             );
             logger.info("Starting email sender: {}", String.join(" ", cmd));
             
-            //Process p = new ProcessBuilder(cmd).start();
+            // ワーキングディレクトリを明確に設定（コンテナ内では/app、ローカルはプロジェクトルート）
             ProcessBuilder pb = new ProcessBuilder(cmd);
+            String userDir = System.getProperty("user.dir");// 現在のワーキングディレクトリを取得
+            logger.info("Working directory: {}", userDir);
+            pb.directory(new java.io.File(userDir));// ワーキングディレクトリを設定することで、Pythonスクリプトが正しい場所から実行されるようにする
+            Map<String, String> env = pb.environment();// 環境変数を設定
+            env.putAll(System.getenv()); // 親プロセスの環境変数をすべて継承
             pb.redirectErrorStream(true); // Pythonのエラーを標準出力にまとめる
             Process p = pb.start();
 

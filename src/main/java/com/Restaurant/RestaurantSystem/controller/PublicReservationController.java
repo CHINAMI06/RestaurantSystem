@@ -64,8 +64,28 @@ public class PublicReservationController {
                 "--people", String.valueOf(saved.getNumberOfPeople())
             );
             logger.info("Starting email sender: {}", String.join(" ", cmd));
-            Process p = new ProcessBuilder(cmd).start();
+            
+            //Process p = new ProcessBuilder(cmd).start();
+            ProcessBuilder pb = new ProcessBuilder(cmd);
+            pb.redirectErrorStream(true); // Pythonのエラーを標準出力にまとめる
+            Process p = pb.start();
+
             logger.info("Email process started: {}", p);
+
+            // Pythonスクリプトの出力をリアルタイムでログに出力する
+            try (java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(p.getInputStream()))) {// Pythonの標準出力を読み取る
+                String line;
+                while ((line = reader.readLine()) != null) {// 出力がある限り読み取る
+                    logger.info("Python Output: {}", line); // Pythonの出力をログに出力する
+                }
+            }
+            int exitCode = p.waitFor(); // Pythonの終了を待つ
+            if (exitCode == 0) {// 正常終了した場合
+                logger.info("Email process finished successfully.");
+            } else {// 異常終了した場合
+                logger.error("Email process failed with exit code: {}", exitCode);// エラーコードをログに出力する
+            }
+
         } catch (Exception e) {
             // メール送信に失敗してもユーザーには影響させない（ログ出力のみ）
             logger.error("Failed to start email sender", e);

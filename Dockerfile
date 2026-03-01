@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   && rm -rf /var/lib/apt/lists/*
 
 # 2. Pythonスクリプト一式をコピー (scriptsフォルダが必要なため)
-# COPY scripts/ ./scripts/
+COPY scripts/ ./scripts/
 
 # 3. もし Python で外部ライブラリ (requestsなど) を使う場合は以下も実行
 # COPY scripts/requirements.txt .

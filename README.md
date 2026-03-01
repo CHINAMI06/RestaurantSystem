@@ -406,6 +406,12 @@ python scripts/send_reservation_email.py --to guest@example.com --name "山田 �
 Gmail 以外のプロバイダでも同様にホストとポートを
 適宜設定してください。
 
+※本番環境にて動作確認不可↓
+Render の Web Service（特に Free / Starter プラン）では
+外部への SMTP ポート（25、465、587 等）への接続が意図的にブロックされています。
+これはスパム防止のためのポリシーで、公式ドキュメントにも記載があります（Outbound firewall rules 参照）。
+よって、Render にデプロイしたアプリは SMTP でメールを送れない仕様である。
+
 #### Docker / Linux デプロイ時の注意
 
 Render のような Linux ベースの Web サービスで Java ランタイム

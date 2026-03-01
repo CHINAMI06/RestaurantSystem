@@ -100,4 +100,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-print("Email sent successfully.")
+print("end of script 'send_reservation_email.py'")

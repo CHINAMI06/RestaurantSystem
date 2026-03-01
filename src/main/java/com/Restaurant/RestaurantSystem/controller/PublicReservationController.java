@@ -43,8 +43,20 @@ public class PublicReservationController {
         try {
             DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             String datetime = saved.getReservationDateTime().format(fmt);
+
+            // Render や多くの Linux 環境では `python3` が使えることが前提なので
+            // 実行コマンドは OS に応じて切り替える。
+            String pythonCmd;
+            if (System.getProperty("os.name").toLowerCase().contains("win")) {
+                // Windows では普通に python.exe を想定
+                pythonCmd = "python";
+            } else {
+                // UNIX 系環境では python3 が標準的
+                pythonCmd = "python3";
+            }
+
             List<String> cmd = Arrays.asList(
-                "python",
+                pythonCmd,
                 "scripts/send_reservation_email.py",
                 "--to", saved.getContact(),
                 "--name", saved.getName(),

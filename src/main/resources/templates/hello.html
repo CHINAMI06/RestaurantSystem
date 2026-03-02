@@ -3,18 +3,106 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>トップ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>レストラン | トップページ</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
 </head>
 
 <body>
-    <h1>Hello, Guest! Welcome to our restaurant!</h1>
 
-    <a th:href="@{/login}">店舗管理ログイン</a>
+    <!-- 1.ナビゲーション -->
+    <nav id="navbar">
+        <div class="logo">RESTAURANT</div>
+        <ul>
+            <li><a th:href="#home">トップ</a></li>
+            <li><a th:href="@{/menu}">メニュー</a></li>
+            <li><a href="#info">店舗情報</a></li>
+            <li><a href="#access">アクセス</a></li>
+            <li><a th:href="@{/reservation}" class="nav-btn">予約</a></li>
+        </ul>
+    </nav>
 
-    <a th:href="@{/menu}">メニューを見る</a>
+    <!-- 2.メインビジュアル -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>ようこそ、RESTAURANTへ</h1>
+            <p>最高の料理とサービスを提供するレストランへようこそ！</p>
+            <div class="hero-buttons">
+                <a th:href="@{/menu}" class="btn btn-secondary">メニューを見る</a>
+                <a th:href="@{/reservation}" class="btn btn-primary">今すぐ予約</a>
+            </div>
+        </div>
+    </section>
 
-    <a th:href="@{/reservation}">予約する</a>
+    <!-- 3.店舗情報 -->
+    <section id="info" class="section container">
+        <h2 class="section-title">店舗情報</h2>
+        <table class="info-table">
+            <tr>
+                <th>店舗名</th>
+                <td>RESTAURANT</td>
+            </tr>
+            <tr>
+                <th>住所</th>
+                <td>東京都渋谷区1-2-3</td>
+            </tr>
+            <tr>
+                <th>電話番号</th>
+                <td>03-1234-5678</td>
+            </tr>
+            <tr>
+                <th>営業時間</th>
+                <td>11:00 - 22:00 (L.O. 21:30)</td>
+            </tr>
+            <tr>
+                <th>定休日</th>
+                <td>水曜日</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- 4.アクセス -->
+    <section id="access" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">アクセス</h2>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.770164459432!2d139.69906087647968!3d35.65803387259473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b582c15c3cf%3A0x8c0e68a8aa03fd5c!2z5riL6LC36aeF!5e0!3m2!1sja!2sjp!4v1772450736712!5m2!1sja!2sjp" 
+                    width="100%" height="400" style="border:0;" 
+                    allowfullscreen="" loading="lazy">
+                </iframe>
+                <p>JR渋谷駅から徒歩5分</p>
+                <p>東京メトロ渋谷駅から徒歩3分</p>
+                <p>駐車場あり（有料）</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5.お問い合わせ -->
+    <section id="contact" class="section container">
+        <h2 class="section-title">お問い合わせ</h2>
+        <form class="contact-form">
+            <input type="text" placeholder="お名前" required>
+            <input type="email" placeholder="メールアドレス" required>
+            <textarea placeholder="お問い合わせ内容" required rows="5"></textarea>
+            <button type="submit" class="btn btn-primary">送信する</button>
+        </form>
+    </section>
+
+    <!-- 6.ページトップに戻るボタン -->
+    <button id="page-top">↑</button>
+
+    <!-- 7.フッター&管理者ボタン -->
+    <footer class="admin-footer">
+        <div class="container">
+            <p>&copy; 2024 RESTAURANT. All rights reserved.</p>
+            <a th:href="@{/login}" class="admin-link">店舗管理ログイン</a>
+        </div>
+    </footer>
+ 
+    <!-- 8. JavaScript -->
+    <script th:src="@{/js/script.js}"></script>
 
 </body>
 

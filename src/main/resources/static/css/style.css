@@ -34,3 +34,63 @@ nav a { text-decoration: none; color: #333; font-weight: bold; }
 /* フッター */
 .admin-footer { background: #222; color: #888; padding: 40px 0; text-align: center; font-size: 0.8rem; }
 .admin-link { display: inline-block; margin-top: 15px; color: #555; text-decoration: none; border: 1px solid #444; padding: 4px 12px; border-radius: 3px; }
+
+
+
+
+
+
+/* メニューページ専用スタイル */
+.menu-container {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.menu-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background: #fff;
+}
+
+.menu-table th {
+    background-color: #2d3436;
+    color: #fff;
+    padding: 15px;
+    font-family: 'Noto Serif JP', serif;
+    letter-spacing: 0.1em;
+}
+
+.menu-table td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 1.1rem;
+}
+
+.menu-name {
+    font-weight: bold;
+    color: #b33939; /* アクセントカラー */
+}
+
+.menu-price {
+    text-align: right;
+    font-family: 'serif';
+    font-weight: 500;
+}
+
+.back-link-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.link-text {
+    color: #666;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    transition: 0.3s;
+}
+
+.link-text:hover {
+    color: #b33939;
+    border-bottom-color: #b33939;
+}

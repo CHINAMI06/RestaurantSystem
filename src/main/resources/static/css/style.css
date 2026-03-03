@@ -94,3 +94,68 @@ nav a { text-decoration: none; color: #333; font-weight: bold; }
     color: #b33939;
     border-bottom-color: #b33939;
 }
+
+
+
+
+
+
+/* 予約フォーム専用スタイル */
+.reservation-container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+/* 入力フィールドの共通スタイル上書き */
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* 幅の計算を調整 */
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #b33939;
+    outline: none;
+}
+
+/* エラーメッセージ */
+.error-message {
+    display: block;
+    color: #b33939;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* 送信ボタンの調整 */
+.submit-btn-container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.submit-btn {
+    width: 100%;
+    max-width: 300px;
+    padding: 15px;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+}

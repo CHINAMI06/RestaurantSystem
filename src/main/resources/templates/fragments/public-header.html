@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+    <nav th:fragment="publicHeader" id="navbar">
+        <div class="logo">RESTAURANT</div>
+        <ul>
+            <li><a href="#home">トップ</a></li>
+            <li><a th:href="@{/menu}">メニュー</a></li>
+            <li><a href="#info">店舗情報</a></li>
+            <li><a href="#access">アクセス</a></li>
+            <li><a th:href="@{/reservation}" class="nav-btn">予約</a></li>
+        </ul>
+    </nav>
+
+</body>
+</html>

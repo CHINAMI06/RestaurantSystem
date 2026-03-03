@@ -1,28 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>レストラン | トップページ</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link href="https://fonts.googleapis.com" rel="stylesheet">
-</head>
+<head th:replace="~{fragments/head :: commonHead('レストラン | トップページ')}"></head>
 
 <body>
 
     <!-- 1.ナビゲーション -->
-    <nav id="navbar">
-        <div class="logo">RESTAURANT</div>
-        <ul>
-            <li><a href="#home">トップ</a></li>
-            <li><a th:href="@{/menu}">メニュー</a></li>
-            <li><a href="#info">店舗情報</a></li>
-            <li><a href="#access">アクセス</a></li>
-            <li><a th:href="@{/reservation}" class="nav-btn">予約</a></li>
-        </ul>
-    </nav>
-
+    <div th:replace="~{fragments/public-header :: publicHeader}"></div>
+    
     <!-- 2.メインビジュアル -->
     <section id="home" class="hero">
         <div class="hero-content">
@@ -94,15 +79,10 @@
     <button id="page-top">↑</button>
 
     <!-- 7.フッター&管理者ボタン -->
-    <footer class="admin-footer">
-        <div class="container">
-            <p>&copy; 2024 RESTAURANT. All rights reserved.</p>
-            <a th:href="@{/login}" class="admin-link">店舗管理ログイン</a>
-        </div>
-    </footer>
+    <div th:replace="~{fragments/footer :: siteFooter}"></div>
  
     <!-- 8. JavaScript -->
-    <script th:src="@{/js/script.js}"></script>
+    <div th:replace="~{fragments/scripts :: commonScripts}"></div>
 
 </body>
 

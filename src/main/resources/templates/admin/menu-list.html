@@ -1,31 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>メニュー一覧</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+<head th:replace="~{fragments/head :: commonHead('メニュー一覧')}"></head>
 
 <body>
-    <h1>メニュー一覧</h1>
-    <table> 
-        <tr>
-            <th>ID</th>
-            <th>料理名</th>
-            <th>価格</th>
-        </tr>
 
-        <!-- メニューのリストをループして表示 -->
-        <tr th:each="menu : ${menus}">
-            <td th:text="${menu.id}"></td>
-            <td th:text="${menu.name}"></td>
-            <td th:text="${menu.price}"></td>
-        </tr>
+<div th:replace="~{fragments/admin-header :: adminHeader}"></div>
+
+<main class="section container">
+
+    <h1>メニュー一覧</h1>
+
+    <table> 
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>料理名</th>
+                <th>価格</th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            <!-- メニューのリストをループして表示 -->
+            <tr th:each="menu : ${menus}">
+                <td th:text="${menu.id}"></td>
+                <td th:text="${menu.name}"></td>
+                <td th:text="${menu.price}"></td>
+            </tr>
+        </tbody>
     </table>
 
-    <a th:href="@{/admin/menu/add}">新しいメニューを追加</a>
-    <a th:href="@{/admin/index}">ダッシュボードに戻る</a>
+    <div class="admin-actions">
+
+        <a th:href="@{/admin/menu/add}" class="btn btn-primary">
+            新しいメニューを追加
+        </a>
+        
+        <a th:href="@{/admin/index}" class="btn btn-secondary">
+            ダッシュボードに戻る
+        </a>
+
+    </div>
+
+
+</main>
+
+<div th:replace="~{fragments/scripts :: commonScripts}"></div>
 
 </body>
 

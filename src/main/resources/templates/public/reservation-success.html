@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>予約完了</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+<head th:replace="~{fragments/head :: commonHead('予約完了')}"></head>
 
 <body>
-    <h1>予約が完了しました</h1>
 
-    <a th:href="@{/}">トップページに戻る</a>
+    <div th:replace="~{fragments/public-header :: publicHeader}"></div>
+
+    <main class="section container">
+        <h1>予約が完了しました</h1>
+        <a th:href="@{/}">トップページに戻る</a>
+    </main>
+    
+    <div th:replace="~{fragments/footer :: siteFooter}"></div>
+    <div th:replace="~{fragments/scripts :: commonScripts}"></div>
 
 </body>
 

@@ -1,27 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>管理者ダッシュボード</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+<head th:replace="~{fragments/head :: commonHead('管理者ダッシュボード')}"></head>
 
-<body>
+<body class="bg-light">
+
+<div th:replace="~{fragments/admin-header :: adminHeader}"></div>
+
+<main class="section container">
+    
     <h1>店舗管理システムへようこそ</h1>
     <p>現在はログイン状態です。</p>
 
-    <a th:href="@{/admin/menu}">メニュー管理（メニュー一覧へ）</a> 
-
-    <a th:href="@{/admin/reservation}">予約管理（予約一覧へ）</a>
-
-    <a th:href="@{/admin/users}">ユーザー管理（ユーザー一覧へ）</a>
+    <div class="admin-menu">
+        
+        <p>
+            <a th:href="@{/admin/menu}">メニュー管理（メニュー一覧へ）</a> 
+        </p>
+    
+        <p>
+            <a th:href="@{/admin/reservation}">予約管理（予約一覧へ）</a>
+        </p>
+    
+        <p>
+            <a th:href="@{/admin/users}">ユーザー管理（ユーザー一覧へ）</a>
+        </p>
+    </div>
     
     <!-- パスワードを扱うため、URLに情報が出ないPOSTメソッドを使う -->
     <!-- ログアウト用のフォーム -->
     <form th:action="@{/logout}" method="post">
         <button type="submit">ログアウト</button>
     </form>
+
+</main>
+
+<div th:replace="~{fragments/scripts :: commonScripts}"></div>
+
 </body>
 
 </html>

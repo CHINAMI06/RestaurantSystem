@@ -8,6 +8,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 import jakarta.validation.constraints.Min; 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity //このクラスがデータベースのテーブルにマッピングされることを示す
 @Table(name = "restaurant_menu") // テーブル名を指定（省略するとクラス名がテーブル名になる）
@@ -22,6 +23,7 @@ public class Menu {
     @NotBlank(message = "料理名は必須です") // 料理名は空であってはならない
     private String name; //料理名
 
+    @NotNull(message = "価格は必須です") // 価格はnullであってはならない
     @Min(value = 0, message = "価格は0以上である必要があります") // 価格は0以上である必要がある
     private Integer price; //価格（整数型を指定。候補：Double,BigDecimal）
 

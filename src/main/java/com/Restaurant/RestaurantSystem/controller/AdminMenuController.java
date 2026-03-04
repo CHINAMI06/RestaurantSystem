@@ -34,11 +34,16 @@ public class AdminMenuController {
     }
 
     @PostMapping("/add") // /admin/menu/addにPOSTリクエストが来たとき,登録処理を行う
-    public String saveMenu(@Valid @ModelAttribute("menu") Menu menu, BindingResult bindingResult) { //@Valid を付けたオブジェクトの すぐ後ろ に BindingResult を置く
+    public String saveMenu(@Valid @ModelAttribute("menu") Menu menu, BindingResult bindingResult, Model model) { //@Valid を付けたオブジェクトの すぐ後ろ に BindingResult を置く
         if (bindingResult.hasErrors()) { // バリデーションエラーがある場合
             return "admin/menu-form"; // フォームに戻る
         }
-        menuService.saveMenu(menu); // Service経由でメニューを保存
+        try {
+            menuService.saveMenu(menu); // Service経由でメニューを保存
+        } catch (IllegalArgumentException e) { // バリデーションエラーがService層で発生した場合
+            model.addAttribute("serviceError", e.getMessage()); // エラーメッセージをモデルに追加
+            return "admin/menu-form"; // フォームに戻る
+        }
         return "redirect:/admin/menu"; // メニュー一覧画面にリダイレクト
     }
 

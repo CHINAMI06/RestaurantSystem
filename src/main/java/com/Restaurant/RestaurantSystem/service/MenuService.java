@@ -18,8 +18,15 @@ public class MenuService {
     @Transactional //メニューを保存
     public Menu saveMenu(Menu menu) {
 
+        Integer price = menu.getPrice();
+
+        // nullチェック（未入力対策）
+        if (price == null) {
+            throw new IllegalArgumentException("価格は必須です。");
+        }
+
         // 価格のバリデーション
-        if (menu.getPrice() < 0) {
+        if (price < 0) {
             throw new IllegalArgumentException("価格は0以上である必要があります。");
         }
 

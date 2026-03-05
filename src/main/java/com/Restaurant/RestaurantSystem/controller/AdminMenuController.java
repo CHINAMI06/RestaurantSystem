@@ -1,6 +1,5 @@
 package com.Restaurant.RestaurantSystem.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,10 +18,13 @@ import jakarta.validation.Valid;
 @RequestMapping("/admin/menu") // ベースURLを指定
 public class AdminMenuController {
     
-    @Autowired // Springの依存注入を使用してMenuServiceを注入
-    private MenuService menuService; // メニュー関連のサービスを注入
+    private final MenuService menuService;
 
-    @GetMapping ///admin/menuにGETリクエストが来たとき,一覧を表示する
+    public AdminMenuController(MenuService menuService) {
+        this.menuService = menuService;
+    }
+
+    @GetMapping // /admin/menuにGETリクエストが来たとき,一覧を表示する
     public String listMenus(Model model) {
         model.addAttribute("menus", menuService.getAllMenus()); // Serviceから全メニューを取得し、モデルに追加
         return "admin/menu-list"; // Thymeleafテンプレート名（templates/admin/menu-list.html）
@@ -41,13 +43,13 @@ public class AdminMenuController {
         return "admin/menu-form"; // Thymeleafテンプレート名（templates/admin/menu-form.html）
     }
 
-    @PostMapping("/add") // /admin/menu/addにPOSTリクエストが来たとき,登録処理を行う
+    @PostMapping("/save") // メニュー保存（追加・更新）
     public String saveMenu(@Valid @ModelAttribute("menu") Menu menu, BindingResult bindingResult, Model model) { //@Valid を付けたオブジェクトの すぐ後ろ に BindingResult を置く
         if (bindingResult.hasErrors()) { // バリデーションエラーがある場合
             return "admin/menu-form"; // フォームに戻る
         }
         try {
-            menuService.saveMenu(menu); // Service経由でメニューを保存
+            menuService.saveMenu(menu); // Service経由でメニューを保存(idあり→更新、idなし→追加)
         } catch (IllegalArgumentException e) { // バリデーションエラーがService層で発生した場合
             model.addAttribute("serviceError", e.getMessage()); // エラーメッセージをモデルに追加
             return "admin/menu-form"; // フォームに戻る

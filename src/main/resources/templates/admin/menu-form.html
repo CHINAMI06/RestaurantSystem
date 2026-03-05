@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="~{fragments/head :: commonHead('メニュー登録')}"></head>
+<head th:replace="~{fragments/head :: commonHead(${isEdit} ? 'メニュー編集' : 'メニュー登録')}"></head>
 
 <body>
 
@@ -31,8 +31,7 @@
 
         <div class="admin-actions">
             <button type="submit" class="btn btn-primary" th:text="${isEdit ? '更新' : '登録'}"></button>
-            <a th:href="@{/admin/menu}" class="btn btn-secondary">メニュー一覧に戻る</a>
-            <a th:href="@{/admin/menu}" class="btn btn-secondary">一覧に戻る</a>
+            <a th:href="@{/admin/menu}" class="btn btn-third">メニュー一覧に戻る</a>
         </div>
 
     </form>

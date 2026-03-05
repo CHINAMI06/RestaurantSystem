@@ -11,8 +11,10 @@
 
     <h1>メニュー登録</h1>
 
-    <!-- フォームの送信先は/admin/menu/add, メソッドはPOST -->
-    <form th:action="@{/admin/menu/add}" th:object="${menu}" method="post" class="admin-form">
+    <!-- フォームの送信先は/admin/menu/save, メソッドはPOST -->
+    <form th:action="@{/admin/menu/save}" th:object="${menu}" method="post" class="admin-form">
+
+        <input type="hidden" th:field="*{id}" />
 
         <div class="form-group">
             <label>料理名: </label>

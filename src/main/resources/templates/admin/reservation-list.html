@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>予約一覧</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+<head th:replace="~{fragments/head :: commonHead('予約一覧')}"></head>
 
 <body>
+
+<div th:replace="~{fragments/admin-header :: adminHeader}"></div>
+
+<main class="container">
+
     <h1>予約一覧</h1>
 
     <table>
@@ -27,7 +28,11 @@
             <td th:text="${reservation.contact}"></td>
         </tr>
     </table>
-    <a th:href="@{/admin/index}">ダッシュボードに戻る</a>
+
+</main>
+
+<div th:replace="~{fragments/admin-footer :: adminFooter}"></div>
+<div th:replace="~{fragments/scripts :: commonScripts}"></div>
 
 </body>
 

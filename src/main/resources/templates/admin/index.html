@@ -12,29 +12,9 @@
     <h1>店舗管理システムへようこそ</h1>
     <p>現在はログイン状態です。</p>
 
-    <div class="admin-menu">
-        
-        <p>
-            <a th:href="@{/admin/menu}">メニュー管理（メニュー一覧へ）</a> 
-        </p>
-    
-        <p>
-            <a th:href="@{/admin/reservation}">予約管理（予約一覧へ）</a>
-        </p>
-    
-        <p>
-            <a th:href="@{/admin/users}">ユーザー管理（ユーザー一覧へ）</a>
-        </p>
-    </div>
-    
-    <!-- パスワードを扱うため、URLに情報が出ないPOSTメソッドを使う -->
-    <!-- ログアウト用のフォーム -->
-    <form th:action="@{/logout}" method="post">
-        <button type="submit">ログアウト</button>
-    </form>
-
 </main>
 
+<div th:replace="~{fragments/admin-footer :: adminFooter}"></div>
 <div th:replace="~{fragments/scripts :: commonScripts}"></div>
 
 </body>

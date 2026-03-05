@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
+<div th:fragment="adminHeader">
+   
 
-<nav th:fragment="adminHeader" class="admin-navbar">
+<nav class="admin-navbar">
+
+    <h2>管理画面</h2>
 
     <ul>
         <li><a th:href="@{/admin/index}">ダッシュボード</a></li>
@@ -11,7 +15,15 @@
         <li><a th:href="@{/admin/users}">ユーザー管理</a></li>
     </ul>
 
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">ログアウト</button>
+    </form>
+
+    <hr>
+
 </nav>
 
+
+</div>
 </body>
 </html>

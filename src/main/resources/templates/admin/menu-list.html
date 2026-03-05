@@ -30,21 +30,11 @@
         </tbody>
     </table>
 
-    <div class="admin-actions">
-
-        <a th:href="@{/admin/menu/add}" class="btn btn-primary">
-            新しいメニューを追加
-        </a>
-        
-        <a th:href="@{/admin/index}" class="btn btn-secondary">
-            ダッシュボードに戻る
-        </a>
-
-    </div>
-
+    <a th:href="@{/admin/menu/add}">新しいメニューを追加</a>
 
 </main>
 
+<div th:replace="~{fragments/admin-footer :: adminFooter}"></div>
 <div th:replace="~{fragments/scripts :: commonScripts}"></div>
 
 </body>

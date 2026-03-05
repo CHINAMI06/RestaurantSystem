@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8">
-    <title>ユーザー 作成/編集フォーム</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-</head>
+<head th:replace="~{fragments/head :: commonHead('ユーザー 作成/編集フォーム')}"></head>
 
 <body>
+
+<div th:replace="~{fragments/admin-header :: adminHeader}"></div>
+    
     <h1 th:if="${user.id == null}">新規ユーザーを追加</h1>
     <h1 th:if="${user.id != null}">ユーザー情報を編集</h1>
 
@@ -43,6 +42,9 @@
         </div>
 
     </form>
+
+<div th:replace="~{fragments/admin-footer :: adminFooter}"></div>
+<div th:replace="~{fragments/scripts :: commonScripts}"></div>    
 
 </body>
 

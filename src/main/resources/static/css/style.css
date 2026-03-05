@@ -159,3 +159,27 @@ nav a { text-decoration: none; color: #333; font-weight: bold; }
     font-size: 1.1rem;
     letter-spacing: 0.1em;
 }
+
+
+
+
+
+
+/* 管理画面用ボタン */
+.btn-third {
+    background: transparent;
+    color: #333;
+    border: 2px solid #333;
+}
+
+.btn-third:hover {
+    background: #333;
+    color: #fff;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}

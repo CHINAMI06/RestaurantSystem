@@ -17,6 +17,7 @@
                 <th>ID</th>
                 <th>料理名</th>
                 <th>価格</th>
+                <th>操作</th>
             </tr>
         </thead>
         
@@ -26,6 +27,10 @@
                 <td th:text="${menu.id}"></td>
                 <td th:text="${menu.name}"></td>
                 <td th:text="${menu.price}"></td>
+                <td>
+                    <a th:href="@{/admin/menu/edit/{id}(id=${menu.id})}">編集</a>
+                    <a th:href="@{/admin/menu/delete/{id}(id=${menu.id})}" onclick="return confirm('本当に削除しますか？')">削除</a>
+                </td>
             </tr>
         </tbody>
     </table>

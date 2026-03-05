@@ -6,6 +6,9 @@
 <body>
 
 <div th:replace="~{fragments/admin-header :: adminHeader}"></div>
+
+<main class="section container">
+
     
     <h1 th:if="${user.id == null}">新規ユーザーを追加</h1>
     <h1 th:if="${user.id != null}">ユーザー情報を編集</h1>
@@ -42,6 +45,8 @@
         </div>
 
     </form>
+
+</main>
 
 <div th:replace="~{fragments/admin-footer :: adminFooter}"></div>
 <div th:replace="~{fragments/scripts :: commonScripts}"></div>    

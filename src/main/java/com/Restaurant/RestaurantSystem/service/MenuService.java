@@ -40,7 +40,8 @@ public class MenuService {
 
     @Transactional(readOnly = true) //IDで取得
     public Menu getMenuById(Long id) {
-        return menuRepository.findById(id).orElse(null);  // 存在しない場合はnull
+        return menuRepository.findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("メニューが見つかりません: id=" + id));
     }   
 
     @Transactional //削除

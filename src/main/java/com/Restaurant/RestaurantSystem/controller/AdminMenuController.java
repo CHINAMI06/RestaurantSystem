@@ -34,6 +34,7 @@ public class AdminMenuController {
     @GetMapping("/add") // /admin/menu/addにGETリクエストが来たとき,登録フォームを表示する
     public String addMenuForm(Model model) {
         model.addAttribute("menu", new Menu()); // 空のMenuオブジェクトをモデルに追加
+        model.addAttribute("isEdit", false); // 編集モードかどうかを示す属性を追加
         return "admin/menu-form"; // Thymeleafテンプレート名（templates/admin/menu-form.html）
     }
 
@@ -41,6 +42,7 @@ public class AdminMenuController {
     public String editMenuForm(@PathVariable Long id, Model model) {
         Menu menu = menuService.getMenuById(id); // IDに基づいてメニューを取得
         model.addAttribute("menu", menu); // メニューをモデルに追加
+        model.addAttribute("isEdit", true); // 編集モードかどうかを示す属性を追加
         return "admin/menu-form"; // Thymeleafテンプレート名（templates/admin/menu-form.html）
     }
 

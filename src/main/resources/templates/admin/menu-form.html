@@ -9,7 +9,7 @@
 
 <main class="section container">
 
-    <h1>メニュー登録</h1>
+    <h1 th:text="${isEdit ? 'メニュー編集' : 'メニュー登録'}"></h1>
 
     <!-- フォームの送信先は/admin/menu/save, メソッドはPOST -->
     <form th:action="@{/admin/menu/save}" th:object="${menu}" method="post" class="admin-form">
@@ -30,8 +30,9 @@
         </div>
 
         <div class="admin-actions">
-            <button type="submit" class="btn btn-primary">登録</button>
+            <button type="submit" class="btn btn-primary" th:text="${isEdit ? '更新' : '登録'}"></button>
             <a th:href="@{/admin/menu}" class="btn btn-secondary">メニュー一覧に戻る</a>
+            <a th:href="@{/admin/menu}" class="btn btn-secondary">一覧に戻る</a>
         </div>
 
     </form>

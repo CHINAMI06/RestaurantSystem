@@ -11,6 +11,9 @@
 
     <h1>メニュー一覧</h1>
 
+    <div th:if="${successMessage}" class="alert-success" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="alert-danger" th:text="${errorMessage}"></div>
+    
     <table> 
         <thead>
             <tr>
@@ -26,7 +29,7 @@
             <tr th:each="menu : ${menus}">
                 <td th:text="${menu.id}"></td>
                 <td th:text="${menu.name}"></td>
-                <td th:text="${menu.price}"></td>
+                <td th:text="${#numbers.formatInteger(menu.price, 0, 'COMMA')} + '円'"></td>
                 <td>
                     <a th:href="@{/admin/menu/edit/{id}(id=${menu.id})}">編集</a>
                     <a th:href="@{/admin/menu/delete/{id}(id=${menu.id})}" onclick="return confirm('本当に削除しますか？')">削除</a>

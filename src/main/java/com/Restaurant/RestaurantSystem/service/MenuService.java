@@ -1,6 +1,7 @@
 package com.Restaurant.RestaurantSystem.service;
 
 import com.Restaurant.RestaurantSystem.entity.Menu;
+import com.Restaurant.RestaurantSystem.exception.MenuNotFoundException;
 import com.Restaurant.RestaurantSystem.repository.MenuRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class MenuService {
     @Transactional(readOnly = true) //IDで取得
     public Menu getMenuById(Long id) {
         return menuRepository.findById(id)
-        .orElseThrow(() -> new IllegalArgumentException("メニューが見つかりません: id=" + id));
+        .orElseThrow(() -> new MenuNotFoundException("メニューが見つかりません: id=" + id));
     }   
 
     @Transactional //削除

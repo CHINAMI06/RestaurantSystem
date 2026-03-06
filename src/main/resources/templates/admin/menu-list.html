@@ -32,7 +32,15 @@
                 <td th:text="${#numbers.formatInteger(menu.price, 0, 'COMMA')} + '円'"></td>
                 <td>
                     <a th:href="@{/admin/menu/edit/{id}(id=${menu.id})}">編集</a>
-                    <a th:href="@{/admin/menu/delete/{id}(id=${menu.id})}" onclick="return confirm('本当に削除しますか？')">削除</a>
+                    
+                    <form action="@{/admin/menu/delete/{id}(id=${menu.id})}" 
+                          method="post"
+                          style="display:inline" 
+                          onsubmit="return confirm('本当に削除しますか？')">
+
+                        <button type="submit" class="btn btn-third">削除</button>
+                    </form>
+
                 </td>
             </tr>
         </tbody>

@@ -66,7 +66,7 @@ public class AdminMenuController {
         return "redirect:/admin/menu"; // メニュー一覧画面にリダイレクト
     }
 
-    @GetMapping("/delete/{id}") // /admin/menu/delete/{id}にGETリクエストが来たとき,メニューを削除する
+    @PostMapping("/delete/{id}") // /admin/menu/delete/{id}にPOSTリクエストが来たとき,メニューを削除する
     public String deleteMenu(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         menuService.deleteMenu(id); // Service経由でメニューを削除
         redirectAttributes.addFlashAttribute("successMessage", "メニューが削除されました。"); // 成功メッセージをフラッシュ属性に追加

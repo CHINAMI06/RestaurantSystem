@@ -211,3 +211,45 @@ td:last-child {
 td:last-child .btn-third {
     margin-right: 6px;
 }
+
+
+
+
+
+
+
+/* ===== 管理画面テーブル ===== */
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background: #fff;
+}
+
+.admin-table th {
+    background: #f7f7f7;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid #ddd;
+}
+
+.admin-table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.admin-table tr:hover {
+    background: #fafafa;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    min-width: 60px;
+}

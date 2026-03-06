@@ -14,7 +14,7 @@
     <div th:if="${successMessage}" class="alert-success" th:text="${successMessage}"></div>
     <div th:if="${errorMessage}" class="alert-danger" th:text="${errorMessage}"></div>
     
-    <table> 
+    <table class="admin-table"> 
         <thead>
             <tr>
                 <th>ID</th>
@@ -31,23 +31,35 @@
                 <td th:text="${menu.name}"></td>
                 <td th:text="${#numbers.formatInteger(menu.price, 0, 'COMMA')} + '円'"></td>
                 <td>
-                    <a th:href="@{/admin/menu/edit/{id}(id=${menu.id})}" class="btn btn-third">編集</a>
+                    <div class="action-buttons">
+
+                        <a th:href="@{/admin/menu/edit/{id}(id=${menu.id})}" 
+                           class="btn btn-third btn-small">編集
+                        </a>
                     
-                    <form th:action="@{/admin/menu/delete/{id}(id=${menu.id})}" 
-                          method="post"
-                          style="display:inline;" 
-                          onsubmit="return confirm('本当に削除しますか？')">
+                        <form th:action="@{/admin/menu/delete/{id}(id=${menu.id})}" 
+                              method="post"
+                              onsubmit="return confirm('本当に削除しますか？')">
 
-                        <button type="submit" class="btn btn-third">削除</button>
-                    </form>
+                            <button type="submit" class="btn btn-third btn-small">
+                                削除
+                            </button>
 
+                        </form>
+                    </div>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <a th:href="@{/admin/menu/add}">新しいメニューを追加</a>
+    <div class="admin-actions">
 
+        <a th:href="@{/admin/menu/add}" class="btn btn-third btn-small">
+        新しいメニューを追加
+        </a>
+
+    </div>
+    
 </main>
 
 <div th:replace="~{fragments/admin-footer :: adminFooter}"></div>

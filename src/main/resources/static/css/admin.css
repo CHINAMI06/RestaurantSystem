@@ -1,0 +1,20 @@
+/* 管理画面タイトル */
+.admin-title {
+    margin-right: auto;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* 管理画面アクション */
+.admin-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}

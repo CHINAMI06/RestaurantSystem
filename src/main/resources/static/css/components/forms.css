@@ -1,0 +1,45 @@
+/* 汎用フォーム */
+.contact-form { display: flex; flex-direction: column; gap: 15px; max-width: 600px; margin: 0 auto; }
+.contact-form input, .contact-form textarea { padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+
+/* 詳細フォームグループ */
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #444;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box; /* 幅の計算を調整 */
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #b33939;
+    outline: none;
+}
+
+/* エラーメッセージ */
+.error-message {
+    display: block;
+    color: #b33939;
+    font-size: 0.85rem;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* テーブル内フォーム */
+td form {
+    display: inline;
+    margin: 0;
+}

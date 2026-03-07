@@ -9,27 +9,27 @@
 
     <main class="section container">
 
-        <div class="menu-container">
+        <div class="menu-page__container">
 
             <h1 class="section-title">お品書き</h1>
     
             <table class="menu-table">
                 <thead>
                     <tr>
-                        <th>料理名</th>
-                        <th style="text-align: right;">価格</th>
+                        <th class="menu-table__header-cell">料理名</th>
+                        <th class="menu-table__header-cell">価格</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="menu : ${menus}">
-                        <td class="menu-name" th:text="${menu.name}">料理名</td>
-                        <td class="menu-price" th:text="${#numbers.formatInteger(menu.price, 0, 'COMMA')} + '円'">0円</td>
+                        <td class="menu-table__cell menu-table__cell--name" th:text="${menu.name}">料理名</td>
+                        <td class="menu-table__cell menu-table__cell--price" th:text="${#numbers.formatInteger(menu.price, 0, 'COMMA')} + '円'">0円</td>
                     </tr>
                 </tbody>
             </table>
 
-            <div class="back-link-container">
-                <a th:href="@{/}" class="link-text">トップページに戻る</a>
+            <div class="menu-page__back-link-container">
+                <a th:href="@{/}" class="btn btn--tertiary">トップページに戻る</a>
             </div>
         </div>
     </main>

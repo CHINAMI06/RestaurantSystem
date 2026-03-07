@@ -40,8 +40,8 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" th:text="${user.id == null ? '登録' : '更新'}"></button>
-            <a th:href="@{/admin/users}">キャンセル</a>
+            <button type="submit" class="btn btn--primary" th:text="${user.id == null ? '登録' : '更新'}"></button>
+            <a th:href="@{/admin/users}" class="btn btn--tertiary">キャンセル</a>
         </div>
 
     </form>

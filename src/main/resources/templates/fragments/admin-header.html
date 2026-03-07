@@ -3,15 +3,18 @@
 <body>
 <div th:fragment="adminHeader">
    
-
 <nav class="admin-navbar">
 
     <div class="admin-nav-left">
         <div class="admin-title">
             管理画面
         </div>
-
-        <ul>
+        <button class="menu-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="admin-nav-links">
             <li><a th:href="@{/admin/index}">ダッシュボード</a></li>
             <li><a th:href="@{/admin/menu}">メニュー管理</a></li>
             <li><a th:href="@{/admin/reservation}">予約管理</a></li>
@@ -24,6 +27,7 @@
     </form>
 
 </nav>
+
 
 
 </div>

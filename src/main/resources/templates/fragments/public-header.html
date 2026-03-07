@@ -5,7 +5,12 @@
 
     <nav th:fragment="publicHeader" id="navbar">
         <div class="logo">RESTAURANT</div>
-        <ul>
+        <button class="menu-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
             <li><a th:href="@{/}">トップ</a></li>
             <li><a th:href="@{/menu}">メニュー</a></li>
             <li><a th:href="@{/info}">店舗情報</a></li>

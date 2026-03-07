@@ -27,3 +27,24 @@ body { margin: 0; font-family: 'Noto Sans JP', sans-serif; color: #333; line-hei
     color: #b33939;
     border-bottom-color: #b33939;
 }
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .section {
+        padding: 60px 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    body {
+        font-size: 14px;
+        line-height: 1.7;
+    }
+}

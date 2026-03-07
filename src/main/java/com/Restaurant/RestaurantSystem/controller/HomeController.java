@@ -21,4 +21,14 @@ public class HomeController {
 		return "admin/index";
 	}
 
+	@GetMapping("/info")
+	public String info() {
+		return "public/info";
+	}
+
+	@GetMapping("/access")
+	public String access() {
+		return "public/access";
+	}
+
 }

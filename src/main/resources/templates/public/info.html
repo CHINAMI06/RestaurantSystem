@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: commonHead('店舗情報')}"></head>
+
+<body>
+
+    <div th:replace="~{fragments/public-header :: publicHeader}"></div>
+
+    <main>
+        <!-- 店舗情報 -->
+        <section id="info" class="section container">
+            <h2 class="section-title">店舗情報</h2>
+            <table class="info-table">
+                <tr>
+                    <th>店舗名</th>
+                    <td>RESTAURANT</td>
+                </tr>
+                <tr>
+                    <th>住所</th>
+                    <td>東京都渋谷区1-2-3</td>
+                </tr>
+                <tr>
+                    <th>電話番号</th>
+                    <td>03-1234-5678</td>
+                </tr>
+                <tr>
+                    <th>営業時間</th>
+                    <td>11:00 - 22:00 (L.O. 21:30)</td>
+                </tr>
+                <tr>
+                    <th>定休日</th>
+                    <td>水曜日</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: siteFooter}"></div>
+    <div th:replace="~{fragments/scripts :: commonScripts}"></div>
+
+</body>
+</html>

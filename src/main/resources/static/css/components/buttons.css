@@ -20,23 +20,23 @@
 
 /* 色・スタイルのModifier */
 .btn--primary {
-    background-color: #b33939;
+    background-color: #e74c3c;
     color: white;
-    border-color: #b33939;
+    border-color: #e74c3c;
 }
 .btn--primary:hover {
-    background-color: #9c3030; /* 少し暗い色に */
-    border-color: #9c3030;
+    background-color: #c0392b; 
+    border-color: #c0392b;
 }
 
 .btn--secondary {
-    background-color: transparent;
-    color: white;
+    background-color: white;
+    color: #2d3436;
     border-color: white;
 }
 .btn--secondary:hover {
-    background-color: white;
-    color: #2d3436; /* 背景色に合わせる */
+    background-color: transparent;
+    color: white; 
 }
 
 .btn--tertiary {

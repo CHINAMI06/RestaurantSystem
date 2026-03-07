@@ -1,3 +1,14 @@
 /* ヒーローエリア */
-.hero { height: 100vh; background: #2d3436; color: white; display: flex; align-items: center; justify-content: center; text-align: center; }
+.hero { 
+    height: 100vh; 
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../../images/soba-homepage-main-image.png);
+    background-color: #2d3436;
+    background-size: cover;
+    background-position: center;
+    color: white; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+}
 .hero-buttons { display: flex; justify-content: center; gap: 20px; margin-top: 30px; }

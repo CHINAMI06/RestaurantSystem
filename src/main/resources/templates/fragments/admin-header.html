@@ -6,22 +6,22 @@
 
 <nav class="admin-navbar">
 
-    <div class="admin-title">
-        管理画面
-    </div>
+    <div class="admin-nav-left">
+        <div class="admin-title">
+            管理画面
+        </div>
 
-    <ul>
-        <li><a th:href="@{/admin/index}">ダッシュボード</a></li>
-        <li><a th:href="@{/admin/menu}">メニュー管理</a></li>
-        <li><a th:href="@{/admin/reservation}">予約管理</a></li>
-        <li><a th:href="@{/admin/users}">ユーザー管理</a></li>
-    </ul>
+        <ul>
+            <li><a th:href="@{/admin/index}">ダッシュボード</a></li>
+            <li><a th:href="@{/admin/menu}">メニュー管理</a></li>
+            <li><a th:href="@{/admin/reservation}">予約管理</a></li>
+            <li><a th:href="@{/admin/users}">ユーザー管理</a></li>
+        </ul>
+    </div>
 
     <form th:action="@{/logout}" method="post" class="logout-container">
         <button type="submit" class="btn btn--tertiary btn--small">ログアウト</button>
     </form>
-
-    <hr>
 
 </nav>
 

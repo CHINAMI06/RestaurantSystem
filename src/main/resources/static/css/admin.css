@@ -1,6 +1,11 @@
+.admin-nav-left {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
 /* 管理画面タイトル */
 .admin-title {
-    margin-right: auto;
     font-weight: 700;
     font-size: 1.2rem;
 }

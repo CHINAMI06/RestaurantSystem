@@ -1,0 +1,21 @@
+/* メニューページ専用スタイル */
+.menu-page__container {
+    max-width: 800px;
+    margin: 40px auto;
+}
+
+.menu-table__cell--name {
+    font-weight: bold;
+    color: #b33939; /* アクセントカラー */
+}
+
+.menu-table__cell--price {
+    text-align: right;
+    font-family: 'serif';
+    font-weight: 500;
+}
+
+.menu-page__back-link-container {
+    text-align: center;
+    margin-top: 50px;
+}

@@ -34,14 +34,14 @@
                     <div class="action-buttons">
 
                         <a th:href="@{/admin/menu/edit/{id}(id=${menu.id})}" 
-                           class="btn btn-third btn-small">編集
+                           class="btn btn--tertiary btn--small">編集
                         </a>
                     
                         <form th:action="@{/admin/menu/delete/{id}(id=${menu.id})}" 
                               method="post"
                               onsubmit="return confirm('本当に削除しますか？')">
 
-                            <button type="submit" class="btn btn-third btn-small">
+                            <button type="submit" class="btn btn--danger btn--small">
                                 削除
                             </button>
 
@@ -54,7 +54,7 @@
 
     <div class="admin-actions">
 
-        <a th:href="@{/admin/menu/add}" class="btn btn-third btn-small">
+        <a th:href="@{/admin/menu/add}" class="btn btn--primary">
         新しいメニューを追加
         </a>
 

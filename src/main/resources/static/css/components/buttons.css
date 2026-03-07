@@ -1,0 +1,79 @@
+/* =================================================================
+   Buttons
+================================================================= */
+
+/* 基本スタイル */
+.btn {
+    display: inline-block;
+    padding: 12px 28px; /* デフォルトのパディングを調整 */
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    border: 2px solid transparent; /* ボーダー幅を確保 */
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.5;
+    font-size: 1rem;
+}
+
+/* 色・スタイルのModifier */
+.btn--primary {
+    background-color: #b33939;
+    color: white;
+    border-color: #b33939;
+}
+.btn--primary:hover {
+    background-color: #9c3030; /* 少し暗い色に */
+    border-color: #9c3030;
+}
+
+.btn--secondary {
+    background-color: transparent;
+    color: white;
+    border-color: white;
+}
+.btn--secondary:hover {
+    background-color: white;
+    color: #2d3436; /* 背景色に合わせる */
+}
+
+.btn--tertiary {
+    background-color: transparent;
+    color: #333;
+    border-color: #ccc; /* .logout-btn のスタイルを統合 */
+}
+.btn--tertiary:hover {
+    background-color: #f5f5f5;
+    border-color: #bbb;
+}
+
+.btn--danger {
+    background-color: #d9534f;
+    color: white;
+    border-color: #d9534f;
+}
+.btn--danger:hover {
+    background-color: #c9302c;
+    border-color: #c9302c;
+}
+
+/* サイズのModifier */
+.btn--small {
+    padding: 6px 14px;
+    font-size: 0.9rem;
+}
+
+.btn--large {
+    padding: 15px 35px;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+}
+
+/* 状態のModifier */
+.btn--full-width {
+    display: block;
+    width: 100%;
+}
+

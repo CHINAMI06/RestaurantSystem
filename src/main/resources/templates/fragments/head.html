@@ -5,8 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title th:text="${title}">RESTAURANT</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com" rel="stylesheet">
+
+    <!-- Common styles -->
+    <link rel="stylesheet" th:href="@{/css/common.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+
+    <!-- Components -->
+    <link rel="stylesheet" th:href="@{/css/components/navigation.css}">
+    <link rel="stylesheet" th:href="@{/css/components/buttons.css}">
+    <link rel="stylesheet" th:href="@{/css/components/forms.css}">
+    <link rel="stylesheet" th:href="@{/css/components/tables.css}">
+
+    <!-- Page-specific styles -->
+    <link rel="stylesheet" th:href="@{/css/pages/home.css}">
+    <link rel="stylesheet" th:href="@{/css/pages/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/pages/reservation.css}">
+
+    <!-- Original stylesheet (to be removed later) -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 </html>

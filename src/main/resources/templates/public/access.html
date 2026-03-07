@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head :: commonHead('アクセス')}"></head>
+
+<body>
+
+    <div th:replace="~{fragments/public-header :: publicHeader}"></div>
+
+    <main>
+        <!-- アクセス -->
+        <section id="access" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">アクセス</h2>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.770164459432!2d139.69906087647968!3d35.65803387259473!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b582c15c3cf%3A0x8c0e68a8aa03fd5c!2z5riL6LC36aeF!5e0!3m2!1sja!2sjp!4v1772450736712!5m2!1sja!2sjp" 
+                        width="100%" height="400" style="border:0;" 
+                        allowfullscreen="" loading="lazy">
+                    </iframe>
+                    <p>JR渋谷駅から徒歩5分</p>
+                    <p>東京メトロ渋谷駅から徒歩3分</p>
+                    <p>駐車場あり（有料）</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div th:replace="~{fragments/footer :: siteFooter}"></div>
+    <div th:replace="~{fragments/scripts :: commonScripts}"></div>
+
+</body>
+</html>

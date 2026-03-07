@@ -1,3 +1,8 @@
+/* Box-sizing reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 /* 基本設定 */
 html { scroll-behavior: smooth; }
 body { margin: 0; font-family: 'Noto Sans JP', sans-serif; color: #333; line-height: 1.8; }
